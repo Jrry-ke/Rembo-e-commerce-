@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - Rembo Shoppers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@400;700&family=Parisienne&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body.register-page {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fff5f0 0%, #ffe4d4 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Header - Consistent with Homepage */
+        .register-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(90deg, #ff6b6b 0%, #ffa502 100%);
+            color: #fff;
+            padding: 12px 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .register-header .logo {
+            font-family: 'Parisienne', cursive;
+            font-size: 2rem;
+            font-weight: 400;
+            background: linear-gradient(135deg, #ffd700 0%, #ff8c00 50%, #ffec8b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.3));
+        }
+
+        .register-home-link {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .register-home-link:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Main Container */
+        .register-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 80px);
+            padding: 40px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Register Card */
+        .register-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            max-width: 480px;
+            width: 100%;
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .register-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #ff6b6b 0%, #ffa502 50%, #ffd700 100%);
+            border-radius: 20px 20px 0 0;
+        }
+
+        /* Branding Section */
+        .register-branding {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 25px;
+            border-bottom: 2px solid #ffe4d4;
+        }
+
+        .register-branding i {
+            font-size: 4rem;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffa502 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .register-branding h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            font-weight: 400;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffa502 50%, #ffd700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .register-branding p {
+            color: #666;
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+        
+    .register-card i {
+            color: #ffa677;
+    }
+
+        /* Form Styles */
+        .register-form {
+            margin-top: 10px;
+        }
+
+        .name-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        .form-group label i {
+            color: #ff6b6b;
+            width: 18px;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #f0f0f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            background: #fafafa;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: #ffa502;
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .phone-group {
+            position: relative;
+        }
+
+        .phone-group input {
+            padding-left: 60px;
+        }
+
+        .phone-icon i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #fa9a39;
+            font-size: 1.1rem;
+            z-index: 2;
+        }
+
+        /* Terms Checkbox */
+        .terms-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin: 24px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #fff5f0 0%, #ffe4d4 100%);
+            border-radius: 12px;
+            border: 2px solid #ffe4d4;
+            font-size: 0.95rem;
+        }
+
+        .terms-group input[type="checkbox"] {
+            margin-top: 2px;
+            transform: scale(1.2);
+            accent-color: #f6932a;
+            width: 20px;
+            height: 20px;
+        }
+
+        .terms-group label {
+            margin: 0;
+            cursor: pointer;
+            color: #555;
+            line-height: 1.5;
+            flex: 1;
+        }
+
+        .terms-group a {
+            color: #f98329;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .terms-group a:hover {
+            text-decoration: underline;
+        }
+
+        /* Register Button */
+        .register-btn {
+            width: 100%;
+            padding: 16px 30px;
+            background: linear-gradient(135deg, #ff7723 0%, #ffcf95 100%);
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+            transition: color 0.3s ease, background 0.3s ease;
+        }
+
+        .register-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 165, 0, 0.4);
+            background: linear-gradient(135deg, #ffce93 0%, #ff3030 100%);
+        }
+
+        .register-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Divider */
+        .register-divider {
+            position: relative;
+            text-align: center;
+            margin: 30px 0;
+            color: #555454;
+            font-weight: 700;
+        }
+
+        .register-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            /*background: linear-gradient(90deg, transparent, #e0e0e0, transparent);*/
+        }
+
+        .register-divider span {
+            background: #fff;
+            padding: 0 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Social Buttons */
+        .social-login-section {
+            margin: 30px 0;
+        }
+
+        .social-btn {
+            width: 100%;
+            padding: 14px 20px;
+            border: 2px solid #e9ecef;
+            background: #fff;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .social-btn:last-child {
+            margin-bottom: 0;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-color: #f86729;
+        }
+
+        .social-btn i {
+            font-size: 1.2rem;
+        }
+
+        .google-register {
+            color: #ff983e;
+            border-color: #db6b37;
+        }
+
+        .google-register:hover {
+            background: #ff7b00;
+            color: #fff;
+        }
+
+        .facebook-register {
+            color: #4267B2;
+            border-color: #4267B2;
+        }
+        .facebook-register:hover {
+            background: #4267B2;
+            color: #fff;
+        }
+
+        /* Footer Text */
+        .register-footer-text {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid #e9ecef;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .register-login-link {
+            color: #ffb86b;
+            font-weight: 700;
+            text-decoration: none;
+            margin-left: 5px;
+        }
+
+        .register-login-link:hover {
+            text-decoration: underline;
+            color: #ffa502;
+        }
+
+        /* Messages */
+        .message {
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .message-success {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message-error {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Loading */
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            z-index: 100;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #ff6b6b;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .register-header {
+                padding: 12px 20px;
+            }
+
+            .register-header .logo {
+                font-size: 1.6rem;
+            }
+
+            .register-container {
+                padding: 20px 15px;
+            }
+
+            .register-card {
+                padding: 30px 25px;
+                margin: 0 10px;
+            }
+
+            .register-branding h1 {
+                font-size: 2.4rem;
+            }
+
+            .name-row {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .register-header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .register-card {
+                padding: 25px 20px;
+            }
+
+            .register-branding h1 {
+                font-size: 2.1rem;
+            }
+
+            .terms-group {
+                flex-direction: column;
+                gap: 10px;
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body class="register-page">
+    
+    <!-- Header -->
+    <header class="register-header">
+        <div class="logo">Rembo Shoppers</div>
+        <a href="index.html" class="register-home-link">
+            <i class="fas fa-home"></i> Back to Home
+        </a>
+    </header>
+
+    <!-- Main Container -->
+    <div class="register-container">
+        <div class="register-card">
+            
+            <!-- Branding -->
+            <div class="register-branding">
+                <i class="fas fa-user-plus"></i>
+                <h1>Create Account</h1>
+                <p>Join thousands of happy shoppers today</p>
+            </div>
+
+            <!-- Messages Container -->
+            <div id="message-container"></div>
+
+            <!-- Form -->
+            <form class="register-form" id="register-form">
+                
+                <!-- Name Row -->
+                <div class="name-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> First Name</label>
+                        <input type="text" id="first-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Last Name</label>
+                        <input type="text" id="last-name" required>
+                    </div>
+                </div>
+
+                <!-- Phone -->
+                <div class="form-group phone-group">
+                    <label><i class="fas fa-phone"></i> Phone Number</label>
+                    <input type="tel" id="phone" required placeholder="+254 700 123 456">
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label><i class="fas fa-envelope"></i> Email Address</label>
+                    <input type="email" id="register-email" required>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="register-password" required minlength="6">
+                </div>
+
+                <!-- Terms -->
+                <div class="terms-group">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">
+                        I agree to the <a href="#" target="_blank">Terms & Conditions</a> and <a href="#" target="_blank">Privacy Policy</a>
+                    </label>
+                </div>
+
+                <!-- Register Button -->
+                <button type="submit" class="register-btn">
+                    <i class="fas fa-user-plus"></i>
+                    Create My Account
+                </button>
+            </form>
+
+            <!-- Divider -->
+            <div class="register-divider">
+                <span>or continue with</span>
+            </div>
+
+            <!-- Social Login -->
+            <div class="social-login-section">
+                <button type="button" class="social-btn google-register">
+                    <i class="fab fa-google"></i>
+                    Continue with Google
+                </button>
+                <button type="button" class="social-btn facebook-register">
+                    <i class="fab fa-facebook-f"></i>
+                    Continue with Facebook
+                </button>
+            </div>
+
+            <!-- Footer -->
+            <div class="register-footer-text">
+                Already have an account? <a href="login.html" class="register-login-link">Sign In Here</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+                // Basic form validation and submission handler
+        document.getElementById('register-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const btn = document.querySelector('.register-btn');
+            const originalText = btn.innerHTML;
+            const messageContainer = document.getElementById('message-container');
+            
+            // Show loading state
+            btn.innerHTML = '<div class="spinner"></div> Creating Account...';
+            btn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Reset button
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                
+                // Show success message
+                showMessage('Account created successfully! Welcome to Rembo Shoppers!', 'success');
+                
+                // Redirect after 2 seconds
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+            }, 2000);
+        });
+        
+        function showMessage(text, type) {
+            const messageContainer = document.getElementById('message-container');
+            const message = document.createElement('div');
+            message.className = `message message-${type}`;
+            message.innerHTML = `
+                <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+                ${text}
+            `;
+            
+            messageContainer.innerHTML = '';
+            messageContainer.appendChild(message);
+            
+            // Animate in
+            gsap.fromTo(message, 
+                { opacity: 0, y: 20, scale: 0.95 },
+                { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(1.7)" }
+            );
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                gsap.to(message, {
+                    opacity: 0,
+                    y: -20,
+                    scale: 0.95,
+                    duration: 0.3,
+                    ease: "power2.in",
+                    onComplete: () => message.remove()
+                });
+            }, 5000);
+        }
+        
+        // Input focus animations
+        document.querySelectorAll('.form-group input').forEach(input => {
+            input.addEventListener('focus', function() {
+                gsap.to(this.parentElement, {
+                    scale: 1.02,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+            
+            input.addEventListener('blur', function() {
+                gsap.to(this.parentElement, {
+                    scale: 1,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+        });
+        
+        // Form input floating labels effect
+        document.querySelectorAll('.form-group input').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('focused');
+            });
+            
+            input.addEventListener('blur', function() {
+                if (!this.value) {
+                    this.parentElement.classList.remove('focused');
+                }
+            });
+            
+            // Check initial value
+            if (input.value) {
+                input.parentElement.classList.add('focused');
+            }
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // GSAP entrance animations
+        gsap.from('.register-card', {
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            ease: "back.out(1.7)"
+        });
+        
+        gsap.from('.register-branding', {
+            opacity: 0,
+            scale: 0.8,
+            duration: 0.8,
+            delay: 0.2,
+            ease: "back.out(1.7)"
+        });
+        
+        gsap.from('.name-row', {
+            opacity: 0,
+            y: 30,
+            duration: 0.6,
+            delay: 0.4,
+            ease: "power2.out"
+        });
+        
+        gsap.from('.register-btn', {
+            opacity: 0,
+            scale: 0.9,
+            rotation: -5,
+            duration: 0.7,
+            delay: 0.6,
+            ease: "back.out(1.7)"
+        });
+    </script>
+</body>
+</html>

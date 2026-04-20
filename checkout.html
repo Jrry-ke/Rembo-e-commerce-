@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Rembo Shoppers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600;700&family=Dancing+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Checkout Page Specific Styles */
+        .checkout-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 2rem;
+            min-height: calc(100vh - 200px);
+        }
+
+        .checkout-main {
+            background: #fff;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .checkout-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .checkout-header h1 {
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .checkout-steps {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+
+        .step.active {
+            color: #3498db;
+            font-weight: 600;
+        }
+
+        .step-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #ecf0f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .step.active .step-icon {
+            background: #3498db;
+            color: white;
+        }
+
+        .checkout-section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #34495e;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e1e8ed;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #3498db;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .payment-method {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #e1e8ed;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: #f8f9fa;
+        }
+
+        .payment-method.active {
+            border-color: #3498db;
+            background: #e3f2fd;
+        }
+
+        .payment-method i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .order-summary-checkout {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 2rem;
+            height: fit-content;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .summary-item.total-row {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .checkout-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+                gap: 1.5rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .checkout-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header (Simplified for Checkout) -->
+    <header style="background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center;">
+            <div class="logo" style="font-size: 1.5rem; font-weight: 700; color: #2c3e50;">Rembo Shoppers</div>
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <a href="cart.html" style="color: #7f8c8d; text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fas fa-arrow-left"></i> Back to Cart
+                </a>
+                <div class="cart">
+                    <a href="cart.html" style="color: #7f8c8d; text-decoration: none;">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">Cart (<span id="cart-count-checkout">0</span>)</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Checkout Container -->
+    <div class="checkout-container">
+        <!-- Checkout Form -->
+        <main class="checkout-main">
+            <div class="checkout-header">
+                <h1><i class="fas fa-credit-card"></i> Checkout</h1>
+                <div class="checkout-steps">
+                    <div class="step active">
+                        <div class="step-icon">1</div>
+                        <span>Checkout</span>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">2</div>
+                        <span>Payment</span>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">3</div>
+                        <span>Complete</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Billing Information -->
+            <div class="checkout-section">
+                <h2 class="section-title"><i class="fas fa-user"></i> Billing Information</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>First Name *</label>
+                        <input type="text" id="first-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name *</label>
+                        <input type="text" id="last-name" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Email Address *</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number *</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label>Address *</label>
+                    <textarea id="address" rows="3" style="resize: vertical;" required></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>City *</label>
+                        <input type="text" id="city" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Postal Code</label>
+                        <input type="text" id="postal-code">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Method -->
+            <div class="checkout-section">
+                <h2 class="section-title"><i class="fas fa-credit-card"></i> Payment Method</h2>
+                <div class="payment-methods">
+                    <div class="payment-method active" data-method="mpesa">
+                        <i class="fab fa-cc-paypal"></i>
+                        <div>M-PESA</div>
+                    </div>
+                    <div class="payment-method" data-method="card">
+                        <i class="fas fa-credit-card"></i>
+                        <div>Credit/Debit Card</div>
+                    </div>
+                    <div class="payment-method" data-method="cash">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <div>Cash on Delivery</div>
+                    </div>
+                </div>
+                <div id="payment-details" style="margin-top: 1.5rem; padding: 1.5rem; background: #f8f9fa; border-radius: 12px; display: none;">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Card Number</label>
+                            <input type="text" placeholder="1234 5678 9012 3456">
+                        </div>
+                        <div class="form-group">
+                            <label>Expiry Date</label>
+                            <input type="text" placeholder="MM/YY">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>CVV</label>
+                            <input type="text" placeholder="123" maxlength="3">
+                        </div>
+                        <div class="form-group">
+                            <label>Cardholder Name</label>
+                            <input type="text" placeholder="John Doe">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Items Review -->
+            <div class="checkout-section">
+                <h2 class="section-title"><i class="fas fa-list"></i> Order Review</h2>
+                <div id="checkout-items" style="max-height: 300px; overflow-y: auto;">
+                    <!-- Cart items will be populated here -->
+                </div>
+            </div>
+
+            <div class="checkout-actions">
+                <a href="cart.html" class="btn btn-secondary" style="flex: 1;">
+                    <i class="fas fa-arrow-left"></i> Back to Cart
+                </a>
+                <button class="btn btn-primary" style="flex: 1;" id="place-order">
+                    <i class="fas fa-lock"></i> Place Order - <span id="checkout-total">KES 0</span>
+                </button>
+            </div>
+        </main>
+
+        <!-- Order Summary Sidebar -->
+        <aside class="order-summary-checkout">
+            <h3 style="margin-bottom: 1.5rem; font-size: 1.4rem;"><i class="fas fa-receipt"></i> Order Summary</h3>
+            <div class="summary-item">
+                <span>Subtotal:</span>
+                <span id="checkout-subtotal">KES 0</span>
+            </div>
+            <div class="summary-item">
+                <span>Shipping:</span>
+                <span id="checkout-shipping" class="free">FREE</span>
+            </div>
+            <div class="summary-item discount" id="checkout-discount-row" style="display: none;">
+                <span>Discount (15%):</span>
+                <span id="checkout-discount">-KES 0</span>
+            </div>
+            <hr style="border: none; height: 1px; background: rgba(255,255,255,0.2); margin: 1rem 0;">
+            <div class="summary-item total-row">
+                <span>Total:</span>
+                <strong id="checkout-total-sidebar">KES 0</strong>
+            </div>
+            <p style="margin-top: 1.5rem; font-size: 0.9rem; opacity: 0.9; line-height: 1.5;">
+                <i class="fas fa-shield-alt"></i> Secure checkout • 30-day returns • Free shipping over KES 5,000
+            </p>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-bottom">
+            <p>&copy; 2026 Rembo Shoppers. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="script.js"></script>
+    
+    <!-- Checkout Page Specific Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let cartData = [];
+            
+            // Initialize checkout page
+            function initCheckout() {
+                // Get cart data from localStorage or global cart object
+                if (typeof RemboShoppers !== 'undefined' && RemboShoppers.cart) {
+                    cartData = RemboShoppers.cart;
+                } else {
+                    cartData = JSON.parse(localStorage.getItem('rembo-cart') || '[]');
+                }
+                
+                if (cartData.length === 0) {
+                    alert('Your cart is empty. Redirecting to cart...');
+                    window.location.href = 'cart.html';
+                    return;
+                }
+                
+                updateCheckoutDisplay();
+                setupEventListeners();
+            }
+            
+            function updateCheckoutDisplay() {
+                // Update order review items
+                const checkoutItemsContainer = document.getElementById('checkout-items');
+                checkoutItemsContainer.innerHTML = '';
+                
+                let subtotal = 0;
+                let itemCount = 0;
+                
+                cartData.forEach((item, index) => {
+                    const itemTotal = item.price * item.quantity;
+                    subtotal += itemTotal;
+                    itemCount += item.quantity;
+                    
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'cart-item-review';
+                    itemElement.style.cssText = `
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 1rem 0;
+                        border-bottom: 1px solid #eee;
+                        gap: 1rem;
+                    `;
+                    
+                    itemElement.innerHTML = `
+                        <div style="display: flex; align-items: center; gap: 1rem; flex: 1;">
+                            <img src="${item.image}" alt="${item.name}" style="
+                                width: 60px; 
+                                height: 60px; 
+                                object-fit: cover; 
+                                border-radius: 8px;
+                            ">
+                            <div>
+                                <div style="font-weight: 600; margin-bottom: 0.25rem;">${item.name}</div>
+                                <div style="color: #7f8c8d; font-size: 0.9rem;">Qty: ${item.quantity}</div>
+                            </div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-weight: 600; font-size: 1.1rem;">KES ${itemTotal.toLocaleString()}</div>
+                        </div>
+                    `;
+                    
+                    checkoutItemsContainer.appendChild(itemElement);
+                });
+                
+                // Update summary
+                const subtotalEl = document.getElementById('checkout-subtotal');
+                const totalEl = document.getElementById('checkout-total');
+                const totalSidebarEl = document.getElementById('checkout-total-sidebar');
+                const checkoutBtnTotal = document.getElementById('checkout-total');
+                
+                subtotalEl.textContent = `KES ${subtotal.toLocaleString()}`;
+                totalEl.textContent = `KES ${subtotal.toLocaleString()}`;
+                totalSidebarEl.textContent = `KES ${subtotal.toLocaleString()}`;
+                checkoutBtnTotal.textContent = `KES ${subtotal.toLocaleString()}`;
+                
+                // Update cart count
+                document.getElementById('cart-count-checkout').textContent = cartData.reduce((sum, item) => sum + item.quantity, 0);
+            }
+            
+            function setupEventListeners() {
+                // Payment method selection
+                document.querySelectorAll('.payment-method').forEach(method => {
+                    method.addEventListener('click', function() {
+                        document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        const paymentDetails = document.getElementById('payment-details');
+                        if (this.dataset.method === 'card') {
+                            paymentDetails.style.display = 'block';
+                        } else {
+                            paymentDetails.style.display = 'none';
+                        }
+                    });
+                });
+                
+                // Place order
+                document.getElementById('place-order').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Basic form validation
+                    const requiredFields = ['first-name', 'last-name', 'email', 'phone', 'address', 'city'];
+                    let isValid = true;
+                    
+                    requiredFields.forEach(fieldId => {
+                        const field = document.getElementById(fieldId);
+                        if (!field.value.trim()) {
+                            field.style.borderColor = '#e74c3c';
+                            isValid = false;
+                        } else {
+                            field.style.borderColor = '#e1e8ed';
+                        }
+                    });
+                    
+                    if (!isValid) {                         return alert('Please fill in all required fields.');
+                    }
+
+                    // Simulate order placement
+                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                    this.disabled = true;
+
+                    setTimeout(() => {
+                        // Save order data
+                        const orderData = {
+                            id: 'ORD-' + Date.now(),
+                            items: cartData,
+                            customer: {
+                                firstName: document.getElementById('first-name').value,
+                                lastName: document.getElementById('last-name').value,
+                                email: document.getElementById('email').value,
+                                phone: document.getElementById('phone').value,
+                                address: document.getElementById('address').value,
+                                city: document.getElementById('city').value
+                            },
+                            subtotal: parseFloat(document.getElementById('checkout-subtotal').textContent.replace('KES ', '')),
+                            total: parseFloat(document.getElementById('checkout-total-sidebar').textContent.replace('KES ', '')),
+                            paymentMethod: document.querySelector('.payment-method.active').dataset.method,
+                            timestamp: new Date().toISOString(),
+                            status: 'pending'
+                        };
+
+                        // Store order
+                        const orders = JSON.parse(localStorage.getItem('rembo-orders') || '[]');
+                        orders.push(orderData);
+                        localStorage.setItem('rembo-orders', JSON.stringify(orders));
+
+                        // Clear cart
+                        localStorage.removeItem('rembo-cart');
+                        if (typeof RemboShoppers !== 'undefined') {
+                            RemboShoppers.cart = [];
+                            RemboShoppers.updateCartDisplay();
+                        }
+
+                        // Show success and redirect
+                        alert(`Order ${orderData.id} placed successfully! Redirecting to order confirmation...`);
+                        window.location.href = `order-confirmation.html?id=${orderData.id}`;
+                    }, 2000);
+                });
+
+                // Form input focus effects
+                document.querySelectorAll('input, select, textarea').forEach(input => {
+                    input.addEventListener('focus', function() {
+                        this.parentElement.style.transform = 'translateY(-2px)';
+                    });
+                    input.addEventListener('blur', function() {
+                        this.parentElement.style.transform = 'translateY(0)';
+                    });
+                });
+            }
+
+            // Initialize when page loads
+            initCheckout();
+
+            // Update cart count from global cart if available
+            setTimeout(() => {
+                if (typeof RemboShoppers !== 'undefined' && RemboShoppers.updateCartDisplay) {
+                    RemboShoppers.updateCartDisplay();
+                }
+            }, 100);
+        });
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        let cartData = [];
+        let retryCount = 0;
+        const maxRetries = 10;
+        
+        // Wait for cart data to be available
+        function waitForCartData(callback) {
+            function checkCart() {
+                retryCount++;
+                
+                // Try global RemboShoppers cart first
+                if (typeof RemboShoppers !== 'undefined' && 
+                    RemboShoppers.cart && 
+                    Array.isArray(RemboShoppers.cart) && 
+                    RemboShoppers.cart.length > 0) {
+                    cartData = RemboShoppers.cart;
+                    callback();
+                    return;
+                }
+                
+                // Fallback to localStorage
+                const localCart = localStorage.getItem('rembo-cart');
+                if (localCart) {
+                    try {
+                        const parsedCart = JSON.parse(localCart);
+                        if (Array.isArray(parsedCart) && parsedCart.length > 0) {
+                            cartData = parsedCart;
+                            callback();
+                            return;
+                        }
+                    } catch (e) {
+                        console.warn('Could not parse localStorage cart:', e);
+                    }
+                }
+                
+                // Retry if not found yet
+                if (retryCount < maxRetries) {
+                    setTimeout(checkCart, 200);
+                } else {
+                    console.warn('Cart data not found after retries. Redirecting to cart.');
+                    alert('Your cart is empty. Redirecting to cart page...');
+                    window.location.href = 'cart.html';
+                }
+            }
+            checkCart();
+        }
+        
+        // Initialize checkout once cart data is available
+        waitForCartData(function() {
+            console.log('Cart data loaded:', cartData);
+            updateCheckoutDisplay();
+            setupEventListeners();
+        });
+        
+        function updateCheckoutDisplay() {
+            const checkoutItemsContainer = document.getElementById('checkout-items');
+            if (!checkoutItemsContainer) return;
+            
+            checkoutItemsContainer.innerHTML = '<div style="text-align: center; padding: 2rem; color: #7f8c8d;"><i class="fas fa-spinner fa-spin" style="font-size: 2rem;"></i><br>Loading items...</div>';
+            
+            // Calculate totals
+            let subtotal = 0;
+            let itemCount = 0;
+            
+            cartData.forEach((item) => {
+                const itemTotal = (item.price || 0) * (item.quantity || 1);
+                subtotal += itemTotal;
+                itemCount += item.quantity || 1;
+            });
+            
+            // Clear loading and populate items
+            checkoutItemsContainer.innerHTML = '';
+            
+            cartData.forEach((item, index) => {
+                const itemTotal = (item.price || 0) * (item.quantity || 1);
+                
+                const itemElement = document.createElement('div');
+                itemElement.className = 'cart-item-review';
+                itemElement.style.cssText = `
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 1rem 0;
+                    border-bottom: 1px solid #eee;
+                    gap: 1rem;
+                `;
+                
+                itemElement.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 1rem; flex: 1;">
+                        <img src="${item.image || 'https://via.placeholder.com/60x60?text=No+Image'}" 
+                             alt="${item.name || 'Item'}" 
+                             style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px; background: #f0f0f0;">
+                        <div style="flex: 1;">
+                            <div style="font-weight: 600; margin-bottom: 0.25rem; font-size: 0.95rem;">${item.name || 'Unnamed Product'}</div>
+                            <div style="color: #7f8c8d; font-size: 0.9rem;">
+                                Qty: ${item.quantity || 1} 
+                                <span style="margin-left: 1rem;">KES ${(item.price || 0).toLocaleString()}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align: right; min-width: 100px;">
+                        <div style="font-weight: 600; font-size: 1.1rem; color: #2c3e50;">
+                            KES ${itemTotal.toLocaleString()}
+                        </div>
+                    </div>
+                `;
+                
+                checkoutItemsContainer.appendChild(itemElement);
+            });
+            
+            // Update all total displays
+            const elementsToUpdate = [
+                'checkout-subtotal',
+                'checkout-total',
+                'checkout-total-sidebar'
+            ];
+            
+            elementsToUpdate.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = `KES ${subtotal.toLocaleString()}`;
+            });
+            
+            // Update checkout button total
+            const checkoutBtnTotal = document.getElementById('checkout-total');
+            if (checkoutBtnTotal) {
+                checkoutBtnTotal.textContent = `KES ${subtotal.toLocaleString()}`;
+            }
+            
+            // Update cart count
+            const cartCountEl = document.getElementById('cart-count-checkout');
+            if (cartCountEl) {
+                cartCountEl.textContent = itemCount;
+            }
+            
+            console.log(`Checkout updated: ${cartData.length} items, KES ${subtotal.toLocaleString()}`);
+        }
+        
+        function setupEventListeners() {
+            // Payment method selection
+            document.querySelectorAll('.payment-method').forEach(method => {
+                method.addEventListener('click', function() {
+                    document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const paymentDetails = document.getElementById('payment-details');
+                    if (paymentDetails && this.dataset.method === 'card') {
+                        paymentDetails.style.display = 'block';
+                    } else if (paymentDetails) {
+                        paymentDetails.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Place order button
+            const placeOrderBtn = document.getElementById('place-order');
+            if (placeOrderBtn) {
+                placeOrderBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Validate form
+                    const requiredFields = ['first-name', 'last-name', 'email', 'phone', 'address', 'city'];
+                    let isValid = true;
+                    
+                    requiredFields.forEach(fieldId => {
+                        const field = document.getElementById(fieldId);
+                        if (field && !field.value.trim()) {
+                            field.style.borderColor = '#e74c3c';
+                            isValid = false;
+                        } else if (field) {
+                            field.style.borderColor = '#e1e8ed';
+                        }
+                    });
+                    
+                    if (!isValid) {
+                        alert('Please fill in all required fields marked with *');
+                        return;
+                    }
+                    
+                    // Process order
+                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                    this.disabled = true;
+                    
+                    setTimeout(() => {
+                        const subtotal = parseFloat(document.getElementById('checkout-subtotal').textContent.replace('KES ', '').replace(/,/g, ''));
+                        
+                        const orderData = {
+                            id: 'ORD-' + Date.now(),
+                            items: [...cartData],
+                            customer: {
+                                firstName: document.getElementById('first-name').value,
+                                lastName: document.getElementById('last-name').value,
+                                email: document.getElementById('email').value,
+                                phone: document.getElementById('phone').value,
+                                address: document.getElementById('address').value,
+                                city: document.getElementById('city').value
+                            },
+                            subtotal: subtotal,
+                            total: subtotal,
+                            paymentMethod: document.querySelector('.payment-method.active')?.dataset.method || 'mpesa',
+                            timestamp: new Date().toISOString(),
+                            status: 'pending'
+                        };
+                        
+                        // Save order
+                        const orders = JSON.parse(localStorage.getItem('rembo-orders') || '[]');
+                        orders.push(orderData);
+                        localStorage.setItem('rembo-orders', JSON.stringify(orders));
+                        
+                        // Clear cart
+                        localStorage.removeItem('rembo-cart');
+                        if (typeof RemboShoppers !== 'undefined') {
+                            RemboShoppers.cart = [];
+                            if (RemboShoppers.updateCartDisplay) {
+                                RemboShoppers.updateCartDisplay();
+                            }
+                        }
+                        
+                        alert(`✅ Order ${orderData.id} placed successfully!\nTotal: KES ${subtotal.toLocaleString()}\n\nCheck your email for confirmation.`);
+                        
+                        // Redirect to success page or home
+                        window.location.href = 'index.html?order=' + orderData.id;
+                    }, 2500);
+                });
+            }
+            
+            // Form focus effects
+            document.querySelectorAll('input, select, textarea').forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.style.borderColor = '#3498db';
+                    this.style.background = 'white';
+                });
+                input.addEventListener('blur', function() {
+                    if (!this.value.trim()) {
+                        this.style.borderColor = '#e1e8ed';
+                        this.style.background = '#f8f9fa';
+                    }
+                });
+            });
+        }
+        
+        // Listen for cart updates from main script
+        window.addEventListener('remboCartUpdated', function() {
+            if (typeof RemboShoppers !== 'undefined' && RemboShoppers.cart) {
+                cartData = RemboShoppers.cart;
+                updateCheckoutDisplay();
+            }
+        });
+    });
+
+</script>
+</body>
+</html>

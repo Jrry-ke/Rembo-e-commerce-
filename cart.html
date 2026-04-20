@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Rembo Shoppers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600;700&family=Dancing+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header (Standard) -->
+    <header>
+        <div class="logo">Rembo Shoppers</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="tel:+254700123456" class="call-btn">Call Us</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <div class="profile">
+                <a href="#" id="profile-link" title="My Profile">
+                    <i class="fas fa-user-circle"></i>
+                    <span>My Profile</span>
+                </a>
+            </div>
+            <div class="cart">
+                <a href="cart.html" id="cart-link" title="Shopping Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">Cart (<span id="cart-count">0</span>)</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar cart-sidebar">
+            <div class="sidebar-section">
+                <h3><i class="fas fa-receipt"></i> Order Summary</h3>
+                <div class="order-summary">
+                    <div class="summary-item">
+                        <span>Subtotal:</span>
+                        <span id="cart-subtotal">KES 0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Shipping:</span>
+                        <span id="shipping-cost" class="free">FREE</span>
+                    </div>
+                    <div class="summary-item discount" id="discount-row" style="display: none;">
+                        <span>Discount (15%):</span>
+                        <span id="discount-amount">-KES 0</span>
+                    </div>
+                    <hr>
+                    <div class="total-row">
+                        <span>Total:</span>
+                        <strong id="cart-total">KES 0</strong>
+                    </div>
+                </div>
+                <a href="checkout.html" class="btn btn-primary full-width" id="checkout-btn" style="display: none;">
+                    Proceed to Checkout
+                </a>
+                <p class="shipping-notice">
+                    <i class="fas fa-truck"></i> Free shipping over KES 5,000
+                </p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content-area">
+            <div class="cart-header">
+                <h1><i class="fas fa-shopping-cart"></i> My Cart</h1>
+                <p>You have <span id="cart-items-count">0</span> items</p>
+            </div>
+
+            <!-- EMPTY CART STATE -->
+            <div class="empty-cart" id="empty-cart">
+                <div class="empty-cart-icon">
+                    <i class="fas fa-shopping-cart" style="font-size: 6rem; color: #ddd;"></i>
+                </div>
+                <h2>Your cart is empty</h2>
+                <p>Start shopping to fill it up!</p>
+                <div class="empty-actions">
+                    <a href="shop.html" class="btn btn-primary">Start Shopping</a>
+                    <a href="index.html#shop" class="btn btn-secondary">View Products</a>
+                </div>
+            </div>
+
+            <!-- CART ITEMS CONTAINER -->
+            <div class="cart-items" id="cart-items" style="display: none;">
+                <!-- Cart items will be dynamically inserted here by JavaScript -->
+            </div>
+
+            <!-- CART ACTIONS -->
+            <div class="cart-actions" id="cart-actions" style="display: none;">
+                <a href="shop.html" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Continue Shopping
+                </a>
+                <a href="checkout.html" class="btn btn-primary" id="proceed-checkout">
+                    <i class="fas fa-credit-card"></i> Proceed to Checkout
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- Your existing footer code here -->
+        <div class="footer-bottom">
+            <p>&copy; 2026 Rembo Shoppers. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="script.js"></script>
+    
+    <!-- Cart Page Specific Script -->
+    <script>
+        // Ensure cart page loads correctly
+        document.addEventListener('DOMContentLoaded', function() {
+            // Force cart update after short delay
+            setTimeout(() => {
+                if (typeof RemboShoppers !== 'undefined') {
+                    RemboShoppers.updateCartDisplay();
+                }
+            }, 100);
+        });
+    </script>
+</body>
+</html>

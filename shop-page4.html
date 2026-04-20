@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Page 4 - Rembo Shoppers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600;700&family=Dancing+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .shop-header {
+            background-image: url(Images/Rembo\ building.png);
+            background-position: center;
+            color: rgb(255, 235, 211);
+            text-align: center;
+            border-style: hidden;
+            border-radius: 12px;
+            font-family: 'Dancing Script', cursive;
+        }
+        .Shop-header-info h1 {
+            font-family: 'Parisienne', cursive;
+        }
+        .discount-banner {
+            background-image: url(Images/black-friday-sales-sign-neon-ligh.jpg);
+            background-size: cover;
+        }
+        
+        .New-goodies {
+            background-image: url(Images/red-cherry-perfumes.jpg);
+            background-size: cover;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            color: antiquewhite;
+            border-color: black;
+        }
+        .New-goodies h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        .New-goodies p {
+            font-size: 0.8rem;
+            margin-bottom: 12px;
+            opacity: 0.9;
+        }
+        .btn-secondary {
+            color: aliceblue;
+        }
+        .Deals {
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            color: antiquewhite;
+            border-color: black;
+            background-image: url(Images/spa-arrangement-with-cremes.jpg);
+            background-size: cover;
+        }
+        .active-category {
+            background: linear-gradient(135deg, #ff6b6b, #ffa502) !important;
+            color: white !important;
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(255,107,107,0.4) !important;
+        }
+        .shop-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #333;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #ffd700;
+            display: inline-block;
+        }
+        .pagination { 
+            width: 80px;
+            color: orangered;
+            align-items: end;
+        } 
+        .page-btn {
+            background-color: transparent;
+            color: orangered;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            gap: 5px; 
+        }
+        .page-btn.active {
+            background: linear-gradient(135deg, #ff6b6b, #ffa502);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">Rembo Shoppers</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html" class="active">Shop</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="tel:+254700123456" class="call-btn">Call Us</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <div class="profile">
+                <a href="login.html" title="Login / My Profile">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Login</span>
+                </a>
+            </div>
+            <div class="cart">
+                <a href="cart.html" id="cart-link" title="Shopping Cart" onclick="goToCart(event)">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Cart (<span id="cart-count">0</span>)</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout Container -->
+    <div class="main-container">
+        
+        <!-- Left Sidebar -->
+        <aside class="sidebar">
+            <!-- Categories -->
+            <div class="sidebar-section">
+                <h3><i class="fas fa-list"></i> Categories</h3>
+                <ul class="category-list">
+                    <li><a href="#home-appliances"><i class="fas fa-blender"></i> Home Appliances</a></li>
+                    <li><a href="#ladies-dresses"><i class="fas fa-tshirt"></i> Ladies Dresses</a></li>
+                    <li><a href="#jewelry"><i class="fas fa-gem"></i> Jewelry & Watches</a></li>
+                    <li><a href="#skincare"><i class="fas fa-spa"></i> Skincare</a></li>
+                    <li><a href="#bath-body"><i class="fas fa-pump-soap"></i> Bath & Body</a></li>
+                    <li><a href="#hair"><i class="fas fa-fish"></i> Hair Extensions</a></li>
+                    <li><a href="#gym-wear"><i class="fas fa-dumbbell"></i> Gym Wear</a></li>
+                    <li><a href="#wedding"><i class="fas fa-ring"></i> Wedding Collection</a></li>
+                    <li><a href="#kitchenware"><i class="fas fa-utensils"></i> Kitchenware</a></li>
+                    <li><a href="#women-fashion"><i class="fas fa-female"></i> Women Fashion</a></li>
+                    <li><a href="#beauty-makeup"><i class="fas fa-magic"></i> Beauty & Makeup</a></li>
+                    <li><a href="#perfumes"><i class="fas fa-spray-can"></i> Perfumes</a></li>
+                    <li><a href="#baby-products"><i class="fas fa-baby"></i> Baby Products</a></li>
+                    <li><a href="#shoes"><i class="fas fa-shoe-prints"></i> Shoes</a></li>
+                    <li><a href="#bags"><i class="fas fa-shopping-bag"></i> Bags</a></li>
+                    <li><a href="#phones-tech"><i class="fas fa-mobile-alt"></i> Phones & Tech</a></li>
+                    <li><a href="#health-fitness"><i class="fas fa-heartbeat"></i> Health & Fitness</a></li>
+                </ul>
+            </div>
+            <!-- Discount Banner -->
+            <div class="discount-banner">
+                <div class="discount-badge">🔥 SALE</div>
+                <h4>Up to 99% OFF</h4>
+                <p>Flash Sale Ends Soon!</p>
+                <a href="#flash-sale" class="btn-discount">Shop Now</a>
+            </div>
+
+            <!-- Stock Upgrades -->
+            <div class="New-goodies">
+                <h4>Market Fresh</h4>
+                <p>Grab your order NOW!!</p>
+                <a href="shop.html" class="btn-discount">Shop Chop</a>
+            </div>
+
+            <!--Giveaways-->
+            <div class="Deals">
+                <h4>Sweet Offers</h4>
+                <p>Exciting Offer Deals</p>
+                <p1>Dont be left out</p1>
+                <a href="index.html" class="btn">Grab Now</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content-area">
+            
+            <!-- Shop Header -->
+            <div class="shop-header">
+                <div class="shop-info">
+                    <h1>Collections</h1>
+                    <p>Don't miss our exclusive deals</p>
+                </div>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" class="search-input" placeholder="Search for products, brands, categories...">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </div>
+            </div>
+
+            <!-- Flash Sale area-->
+            <section id="flash-sale" class="shop-section">
+                <h2> Flash Sale <span class="sale-tag">More offers</span></h2>
+                <div class="product-grid" id="flash-sale-grid">
+                    <div class="product-card">
+                        <div class="badge hot">-75%</div>
+                        <img src="Images/necklacestand.jpg" alt="Diamond Necklace">
+                        <h3>Diamond Necklace Set</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <span>(289)</span>
+                        </div>
+                        <p class="price"><span class="old-price">KES 25,000</span> KES 6,250</p>
+                        <a href="#" class="btn add-to-cart" data-product="Diamond Necklace Set" data-price="6250">Add to Cart</a>
+                    </div>
+                    <div class="product-card">
+                        <div class="badge">-68%</div>
+                        <img src="Images/wedding gown.jpg" alt="Bridal Gown">
+                        <h3>Wedding Bridal Gown</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            <span>(234)</span>
+                        </div>
+                        <p class="price"><span class="old-price">KES 45,000</span> KES 14,400</p>
+                        <a href="#" class="btn add-to-cart" data-product="Wedding Bridal Gown" data-price="14400">Add to Cart</a>
+                    </div>
+                    <div class="product-card">
+                        <div class="badge new">-55%</div>
+                        <img src="Images/close-up-air-fryer.jpg" alt="Air Fryer">
+                        <h3>Smart Air Fryer 5L</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <span>(198)</span>
+                        </div>
+                        <p class="price"><span class="old-price">KES 18,000</span> KES 8,100</p>
+                        <a href="#" class="btn add-to-cart" data-product="Smart Air Fryer" data-price="8100">Add to Cart</a>
+                    </div>
+                    <div class="product-card">
+                        <div class="badge">-60%</div>
+                        <img src="Images/bbblender.jpg" alt="Blender Set">
+                        <h3>Blender</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <span>(267)</span>
+                        </div>
+                        <p class="price"><span class="old-price">KES 12,500</span> KES 5,000</p>
+                        <a href="#" class="btn add-to-cart" data-product="Professional Blender" data-price="5000">Add to Cart</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Home Appliances Section -->
+            <section id="home-appliances" class="shop-section">
+                <h2>🏠 Home Appliances <span class="sale-tag">Must Haves</span></h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="badge">New</div>
+                        <img src="Images/codedcleaner.jpg" alt="Vacuum Cleaner">
+                        <h3>Cordless Vacuum Cleaner</h3>
+                        <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(189)</span></div>
+                        <p class="price">KES 14,500</p>
+                        <a href="#" class="btn add-to-cart" data-product="Cordless Vacuum Cleaner" data-price="14500">Add to Cart</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="Images/COSORI Electric Kettle, Tea Kettle Pot, 1_7L_1500W, Stainless Steel Inner Lid & Filter, Hot Water Ke.jpg" alt="Electric Kettle">
+                        <h3>1.7L Electric Kettle</h3>
+                        <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><span>(145)</span></div>
+                        <p class="price">KES 2,800</p>
+                        <a href="#" class="btn add-to-cart" data-product="Electric Kettle" data-price="2800">Add to Cart</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="Images/ricecooker.jpg" alt="Rice Cooker">
+                        <h3>Digital Rice Cooker</h3>
+                        <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(167)</span></div>
+                        <p class="price">KES 5,200</p>
+                        <a href="#" class="btn add-to-cart" data-product="Digital Rice Cooker" data-price="5200">Add to Cart</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="Images/view-retro-clothing-iron-nutshell-tones.jpg" alt="Iron Box">
+                        <h3>Steam Iron Box</h3>
+                        <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(123)</span></div>
+                        <p class="price">KES 3,100</p>
+                        <a href="#" class="btn add-to-cart" data-product="Steam Iron Box" data-price="3100">Add to Cart</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Jewelry & Wedding Section -->
+            <section id="jewelry" class="shop-section">
+                <h2>💎 Jewelry & Wedding <span class="sale-tag">Luxury</span></h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="badge hot">Hot</div>
+                        <img src="Images/earing.jpg" alt="Gold Earrings">
+                        <h3>18K Gold Earrings</h3>
+                        <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(234)</span></div>
+                        <p class="price">KES 7,800</p>
+                        <a href="#" class="btn add-to-cart" data-product="18K Gold Earrings" data-price="7800">Add to Cart</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="Images/ring.jpg" alt="Wedding Ring Set">
+                        <h3>Diamond Wedding Rings</h3>
+                        <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(156)</span></div>
+                        <p class="price">KES 22,000</p>
+                        <a href="#" class="btn add-to-cart" data-product="Diamond Wedding Rings" data-price="22000">Add to Cart</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="Images/bangles.jpg" alt="Bracelet">
+                        <h3>Charm Bracelet Set</h3>
+                        <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(178)</span></div>
+                        <p class="price">KES 4,200</p>
+                        <a href="#" class="btn add-to-cart" data-product="Charm Bracelet Set" data-price="4200">Add to Cart</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="Images/necklace.jpg" alt="Pendant">
+                        <h3>Heart Pendant Necklace</h3>
+                        <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><span>(134)</span></div>
+                        <p class="price">KES 3,500</p>
+                        <a href="#" class="btn add-to-cart" data-product="Heart Pendant Necklace" data-price="3500">Add to Cart</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Smart Pagination -->
+            <div class="pagination">
+                <a href="shop-page3.html" class="page-btn prev" data-page="prev"><i class="fas fa-chevron-left"></i></a>
+                <a href="shop.html" class="page-btn" data-page="1">1</a>
+                <a href="shop-page2.html" class="page-btn" data-page="2">2</a>
+                <a href="shop-page3.html" class="page-btn" data-page="3">3</a>
+                <a href="shop-page4.html" class="page-btn active" data-page="4">4</a>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section links">
+                <h3><i class="fas fa-link"></i> Quick Links</h3>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="shop.html"><i class="fas fa-shopping-cart"></i> Shop</a></li>
+                    <li><a href="about.html"><i class="fas fa-users"></i> About Us</a></li>
+                    <li><a href="tel:+254700123456"><i class="fas fa-phone"></i> Call Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section service">
+                <h3><i class="fas fa-headset"></i> Customer Service</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-shipping-fast"></i> Shipping Info</a></li>
+                    <li><a href="#"><i class="fas fa-undo"></i> Returns & Refunds</a></li>
+                    <li><a href="#"><i class="fas fa-lock"></i> Privacy Policy</a></li>
+                    <li><a href="#"><i class="fas fa-file-contract"></i> Terms & Conditions</a></li>
+                    <li><a href="#"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section contact">
+                <div class="payment-methods">
+                    <p><i class="fas fa-credit-card"></i> We Accept:</p>
+                    <div class="payment-icons">
+                        <i class="fab fa-cc-visa" title="Visa"></i>
+                        <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+                        <i class="fas fa-mobile-alt" title="M-Pesa"></i>
+                        <i class="fas fa-money-bill-wave" title="Cash on Delivery"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-newsletter">
+            <h3><i class="fas fa-paper-plane"></i> Subscribe to Our Newsletter</h3>
+            <p>Get the latest updates on new products and upcoming sales.</p>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+                <button type="submit" class="newsletter-btn"><i class="fas fa-envelope"></i> Subscribe</button>
+            </form>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Rembo Shoppers. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+    
+    <!-- Pagination and Category Navigation Script -->
+    <script>
+    // Smart Category + Pagination System
+    document.addEventListener('DOMContentLoaded', function() {
+        function getPageUrl(pageNum) {
+            if (pageNum === 1) return 'shop.html';
+            return `shop-page${pageNum}.html`;
+        }
+
+        function navigateToPage(pageNum, category = null) {
+            if (category) localStorage.setItem('selectedCategory', category);
+            localStorage.setItem('targetPage', pageNum);
+            window.location.href = getPageUrl(pageNum);
+        }
+
+        // Pagination buttons
+        document.querySelectorAll('.page-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const pageAttr = this.getAttribute('data-page');
+                let pageNum;
+                
+                if (pageAttr === 'prev') pageNum = 3;
+                else if (pageAttr === 'next') pageNum = 1; // Loops back to page 1
+                else pageNum = parseInt(pageAttr);
+                
+                navigateToPage(pageNum);
+            });
+        });
+
+        // Sidebar category links
+        document.querySelectorAll('.category-list a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                const category = href.replace('#', '');
+                navigateToPage(1, category);
+            });
+        });
+
+        // Scroll to category on page load
+        const selectedCategory = localStorage.getItem('selectedCategory');
+        if (selectedCategory) {
+            setTimeout(() => {
+                const target = document.querySelector(`#${selectedCategory}`);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    const sidebarLink = document.querySelector(`.category-list a[href="#${selectedCategory}"]`);
+                    if (sidebarLink) {
+                        sidebarLink.classList.add('active-category');
+                        setTimeout(() => sidebarLink.classList.remove('active-category'), 2000);
+                    }
+                }
+                localStorage.removeItem('selectedCategory');
+            }, 500);
+        }
+
+        // Set active page in pagination
+        const currentPage = localStorage.getItem('targetPage') || '4';
+        document.querySelector(`.page-btn[data-page="${currentPage}"]`)?.classList.add('active');
+    });
+
+    // Check login status and update profile text
+    document.addEventListener('DOMContentLoaded', function() {
+        const profileSpan = document.querySelector('.profile span');
+        const userEmail = localStorage.getItem('userEmail');
+        
+        if (userEmail && profileSpan) {
+            profileSpan.textContent = userEmail.split('@')[0];
+            profileSpan.title = 'Click to logout';
+        }
+    });
+    </script>
+</body>
+</html>

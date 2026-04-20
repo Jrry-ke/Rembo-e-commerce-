@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Rembo Shoppers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@400;700&family=Parisienne&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body.profile-page {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fff5f0 0%, #ffe4d4 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header - Brand Consistent */
+        .profile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(90deg, #ff6b6b 0%, #ffa502 100%);
+            color: #fff;
+            padding: 12px 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .profile-header .logo {
+            font-family: 'Parisienne', cursive;
+            font-size: 2rem;
+            font-weight: 400;
+            background: linear-gradient(135deg, #ffd700 0%, #ff8c00 50%, #ffec8b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .profile-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .cart-link, .logout-btn {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .cart-link:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .logout-btn {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .logout-btn:hover {
+            background: #ff4757;
+            transform: translateY(-2px);
+        }
+
+        /* Main Container */
+        .profile-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+            min-height: calc(100vh - 100px);
+        }
+
+        /* Profile Sidebar */
+        .profile-sidebar {
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .profile-avatar {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #ffe4d4;
+        }
+
+        .avatar-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffa502 100%);
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #fff;
+            box-shadow: 0 8px 25px rgba(255,107,107,0.3);
+        }
+
+        .profile-name {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #ff6b6b;
+            margin-bottom: 5px;
+        }
+
+        .profile-email {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .profile-nav {
+            list-style: none;
+        }
+
+        .profile-nav li {
+            margin-bottom: 10px;
+        }
+
+        .profile-nav a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 20px;
+            color: #555;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .profile-nav a:hover,
+        .profile-nav a.active {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffa502 100%);
+            color: #fff;
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(255,107,107,0.3);
+        }
+
+        .profile-nav i {
+            width: 20px;
+            font-size: 1.1rem;
+            color: #ff6b6b;
+        }
+
+        .profile-nav a:hover i,
+        .profile-nav a.active i {
+            color: #fff;
+        }
+
+        /* Main Content */
+        .profile-main {
+            display: grid;
+            gap: 25px;
+        }
+
+        .profile-section {
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #ffe4d4;
+        }
+
+        .section-header i {
+            font-size: 1.5rem;
+            color: #ff6b6b;
+            width: 25px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: #333;
+            font-weight: 700;
+        }
+
+        /* Profile Info */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .profile-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: #fafafa;
+            border-radius: 12px;
+            border-left: 4px solid #ffa502;
+        }
+
+        .profile-item i {
+            font-size: 1.3rem;
+            color: #ff6b6b;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,107,107,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-item h4 {
+            font-size: 0.95rem;
+            color: #666;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .profile-item p {
+            font-weight: 600;
+            color: #333;
+            font-size: 1rem;
+        }
+
+        /* Edit Profile Form */
+        .edit-form {
+            display: grid;
+            gap: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #f0f0f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #ffa502;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(255,165,0,0.1);
+        }
+
+        /* Order History */
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .orders-table th,
+        .orders-table td {
+            padding: 15px 12px;
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .orders-table th {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffa502 100%);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .orders-table td {
+            font-size: 0.95rem;
+        }
+
+        .status {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status.pending { background: #fff3cd; color: #856404; }
+        .status.shipped { background: #d1ecf1; color: #0c5460; }
+        .status.delivered { background: #d4edda; color: #155724; }
+
+        /* Action Buttons */
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ffd700 0%, #ff8c00 100%);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(255,165,0,0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,165,0,0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #ff6b6b;
+            border: 2px solid #ffe4d4;
+        }
+
+        .btn-secondary:hover {
+            background: #ff6b6b;
+            color: #fff;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffa502 100%);
+            color: #fff;
+            padding: 25px 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(255,107,107,0.3);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.95;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .profile-container {
+                grid-template-columns: 1fr;
+                padding: 20px 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .profile-header {
+                padding: 12px 20px;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .profile-sidebar {
+                padding: 25px 20px;
+            }
+
+            .profile-section {
+                padding: 25px 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body class="profile-page">
+    
+    <!-- Header -->
+    <header class="profile-header">
+        <div class="logo">Rembo Shoppers</div>
+        <div class="profile-header-actions">
+            <a href="cart.html" class="cart-link" title="Shopping Cart">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Cart (3)</span>
+            </a>
+            <a href="index.html" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                Logout
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="profile-container">
+        <!-- Sidebar -->
+        <aside class="profile-sidebar">
+            <div class="profile-avatar">
+                <div class="avatar-image">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="profile-name">Jane Doe</div>
+                <div class="profile-email">jane.doe@email.com</div>
+            </div>
+            
+            <ul class="profile-nav">
+                <li><a href="#profile" class="active"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="#orders"><i class="fas fa-box"></i> Orders</a></li>
+                <li><a href="#wishlist"><i class="fas fa-heart"></i> Wishlist</a></li>
+                <li><a href="#address"><i class="fas fa-map-marker-alt"></i> Addresses</a></li>
+                <li><a href="#payment"><i class="fas fa-credit-card"></i> Payment Methods</a></li>
+                <li><a href="#settings"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="profile-main">
+            <!-- Profile Overview -->
+            <section id="profile" class="profile-section">
+                <div class="section-header">
+                    <i class="fas fa-user-circle"></i>
+                    <h2 class="section-title">Profile Overview</h2>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Total Orders</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">KES 45,200</div>
+                        <div class="stat-label">Total Spent</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Active Orders</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label">Completion Rate</div>
+                    </div>
+                </div>
+
+                <div class="profile-grid">
+                    <div class="profile-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+254 700 123 456</p>
+                        </div>
+                    </div>
+                    <div class="profile-item">
+                        <i class="fas fa-calendar"></i>
+                        <div>
+                            <h4>Member Since</h4>
+                            <p>December 2024</p>
+                        </div>
+                    </div>
+                    <div class="profile-item">
+                        <i class="fas fa-star"></i>
+                        <div>
+                            <h4>Rating</h4>
+                            <p>4.9/5.0</p>
+                        </div>
+                    </div>
+                    <div class="profile-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <div>
+                            <h4>Verified</h4>
+                            <p>Premium Member</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="#edit-profile" class="btn btn-primary">
+                        <i class="fas fa-edit"></i>
+                        Edit Profile
+                    </a>
+                </div>
+            </section>
+
+            <!-- Edit Profile -->
+            <section id="edit-profile" class="profile-section" style="display: none;">
+                <div class="section-header">
+                    <i class="fas fa-edit"></i>
+                    <h2 class="section-title">Edit Profile</h2>
+                </div>
+                
+                <form class="edit-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" value="Jane" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" value="Doe" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" value="+254 700 123 456" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" value="jane.doe@email.com" required>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 15px; justify-content: flex-end;">
+                        <button type="button" class="btn btn-secondary" onclick="toggleEditForm()">
+                            <i class="fas fa-times"></i>
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                                                    <i class="fas fa-save"></i>
+                        Save Changes
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Recent Orders -->
+            <section id="orders" class="profile-section">
+                <div class="section-header">
+                    <i class="fas fa-box-open"></i>
+                    <h2 class="section-title">Recent Orders</h2>
+                </div>
+                
+                <table class="orders-table">
+                    <thead>
+                        <tr>
+                            <th>Order #</th>
+                            <th>Date</th>
+                            <th>Items</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#1001</td>
+                            <td>2024-12-15</td>
+                            <td>3 items</td>
+                            <td>KES 8,500</td>
+                            <td><span class="status delivered">Delivered</span></td>
+                            <td><button class="btn btn-secondary" style="padding: 8px 16px; font-size: 0.8rem;"><i class="fas fa-eye"></i> View</button></td>
+                        </tr>
+                        <tr>
+                            <td>#1002</td>
+                            <td>2024-12-12</td>
+                            <td>2 items</td>
+                            <td>KES 12,300</td>
+                            <td><span class="status shipped">Shipped</span></td>
+                            <td><button class="btn btn-secondary" style="padding: 8px 16px; font-size: 0.8rem;"><i class="fas fa-eye"></i> View</button></td>
+                        </tr>
+                        <tr>
+                            <td>#1003</td>
+                            <td>2024-12-10</td>
+                            <td>1 item</td>
+                            <td>KES 3,200</td>
+                            <td><span class="status pending">Pending</span></td>
+                            <td><button class="btn btn-secondary" style="padding: 8px 16px; font-size: 0.8rem;"><i class="fas fa-eye"></i> View</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        // Navigation functionality
+        document.querySelectorAll('.profile-nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                
+                // Remove active class
+                document.querySelectorAll('.profile-nav a').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show/hide sections
+                if (targetId === 'profile') {
+                    showProfileOverview();
+                } else if (targetId === 'orders') {
+                    showOrders();
+                }
+            });
+        });
+
+        function showProfileOverview() {
+            document.getElementById('profile').style.display = 'block';
+            document.getElementById('edit-profile').style.display = 'none';
+            document.getElementById('orders').style.display = 'block';
+        }
+
+        function showOrders() {
+            document.getElementById('profile').style.display = 'block';
+            document.getElementById('edit-profile').style.display = 'none';
+            document.getElementById('orders').style.display = 'block';
+        }
+
+        function toggleEditForm() {
+            const editForm = document.getElementById('edit-profile');
+            const overview = document.getElementById('profile');
+            
+            if (editForm.style.display === 'none' || !editForm.style.display) {
+                overview.style.display = 'none';
+                editForm.style.display = 'block';
+                gsap.fromTo(editForm, 
+                    { opacity: 0, scale: 0.95 }, 
+                    { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.7)" }
+                );
+            } else {
+                editForm.style.display = 'none';
+                overview.style.display = 'block';
+                gsap.fromTo(overview, 
+                    { opacity: 0, y: 20 }, 
+                    { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
+                );
+            }
+        }
+
+        // Edit form submission
+        document.querySelector('.edit-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            showMessage('Profile updated successfully!', 'success');
+            toggleEditForm();
+        });
+
+        function showMessage(text, type = 'success') {
+            // Create toast notification
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: ${type === 'success' ? '#d4edda' : '#f8d7da'};
+                color: ${type === 'success' ? '#155724' : '#721c24'};
+                padding: 15px 20px;
+                border-radius: 12px;
+                box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+                z-index: 10000;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                transform: translateX(400px);
+                transition: all 0.4s ease;
+            `;
+            toast.innerHTML = `
+                <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+                ${text}
+            `;
+            
+            document.body.appendChild(toast);
+            
+            // Animate in
+            gsap.to(toast, {
+                x: 0,
+                duration: 0.5,
+                ease: "back.out(1.7)"
+            });
+            
+            // Auto remove
+            setTimeout(() => {
+                gsap.to(toast, {
+                    x: 400,
+                    opacity: 0,
+                    duration: 0.3,
+                    ease: "power2.in",
+                    onComplete: () => toast.remove()
+                });
+            }, 4000);
+        }
+
+        // Hover animations for profile items
+        document.querySelectorAll('.profile-item, .stat-card').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                gsap.to(this, {
+                    scale: 1.02,
+                    y: -5,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                gsap.to(this, {
+                    scale: 1,
+                    y: 0,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+        });
+
+        // Table row hover
+        document.querySelectorAll('.orders-table tbody tr').forEach(row => {
+            row.addEventListener('mouseenter', function() {
+                gsap.to(this, {
+                    backgroundColor: '#f8f9fa',
+                    scale: 1.01,
+                    duration: 0.2
+                });
+            });
+            
+            row.addEventListener('mouseleave', function() {
+                gsap.to(this, {
+                    backgroundColor: 'transparent',
+                    scale: 1,
+                    duration: 0.2
+                });
+            });
+        });
+
+        // GSAP Page Load Animations
+        gsap.from('.profile-sidebar', {
+            opacity: 0,
+            x: -50,
+            duration: 0.8,
+            ease: "back.out(1.7)"
+        });
+
+        gsap.from('.profile-section', {
+            opacity: 0,
+            y: 50,
+            duration: 0.8,
+            stagger: 0.2,
+            delay: 0.2,
+            ease: "back.out(1.7)"
+        });
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

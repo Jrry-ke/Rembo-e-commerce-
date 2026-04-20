@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Rembo Shoppers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@400;700&family=Parisienne&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .login-page {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fff5f0 0%, #ffe4d4 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .logo {
+            font-family: 'Parisienne', cursive;
+            font-size: 2rem;
+            background: linear-gradient(135deg, #ffd700 0%, #ff8c00 50%, #ffec8b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .login-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffa502 100%);
+            color: #fff;
+        }
+        .login-home-link {
+            color: #fff;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: color 0.4s ease;
+        }
+        .login-home-link i {
+            margin-right: 8px;
+            color: white;
+        }
+        .login-home-link:hover {
+            color: #fc6100;
+        }
+        .login-home-link:hover i {
+            color: #fc6100;
+        }
+        .login-container {
+            flex:1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        .login-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+            padding: 30px;
+            text-align: center;
+            -webkit-animation-direction: reverse;
+            animation-direction: reverse;
+        }
+        .login-branding i {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #ffd700 0%, #ff8c00 50%, #ffec8b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .login-branding h1 {
+            font-family: 'parisienne', cursive;
+            font-size: 1.7rem;
+            margin: 10px 0 5px;
+            color: #333;
+            background: linear-gradient(135deg, #ffd700 0%, #ff8c00 50%, #ffec8b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+        .login-branding p {
+            color: #000000;
+            font-size: 0.9rem;
+            font-family: 'poppins', sans-serif;
+            font-weight: 500;
+        }
+        .login-form {
+            margin: 20px 0;
+            text-align: left;
+        }
+        .form-group .phone-group i {
+            background: linear-gradient(135deg, #ffd700 0%, #ff8c00 50%, #ffec8b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .form-group {
+            position: relative;
+            margin: 20px 0;
+        }
+        .remember-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px;
+        }
+        .forgot-password {
+            color: #ff5100;
+            font-size: 0.9rem;
+            text-decoration: none;
+            margin: 10px;
+            transition: color 0.3s ease;
+        }
+        .forgot-password:hover {
+            color: #f7b64c;
+        }
+        .login-btn {
+            width: 100%;
+            padding:12px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffa502 100%);
+            border: thick;
+            border-radius: 9px;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: 'playfair display', serif;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: color 0.3s ease;
+            
+        }
+        .login-btn:hover {
+            background: linear-gradient(rgb(255, 255, 255) 0%, rgb(255, 19, 19) 100%);
+            justify-content: center;
+        }
+        .login-divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 20px;
+            font-family: 'poppins', sans-serif;
+            font-size: 1.0rem;
+            justify-content: center;
+            font-weight: 350;
+        }
+        .social-login-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            gap: 20px;
+            border-style: hidden;
+        }
+        .google-login {
+            background: #ffc164;
+            padding: 5px;
+            height: 35px;
+        }
+        .facebook-login {
+            background: #3b5998;
+            height: 35px;
+        }
+        .google-login:hover {
+            background: #fdfdfd;
+            color: #ff8c00;
+        }
+        .facebook-login:hover {
+            background: #fff;
+            color: #3b5998;
+        }
+        .login-footer-text {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #333;
+        }
+        .login-footer-link {
+            color: #ff5100;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .login-footer-link:hover {
+            color: #f7b64c;
+        }
+
+    </style>
+</head>
+<body class="login-page">
+    
+    <!-- Header -->
+    <header class="login-header">
+        <div class="logo">Rembo Shoppers</div>
+        <a href="index.html" class="login-home-link">
+            <i class="fas fa-home"></i> Back to Home
+        </a>
+    </header>
+
+    <!-- Main Container -->
+    <div class="login-container">
+        <div class="login-card">
+            
+            <!-- Branding -->
+            <div class="login-branding">
+                <i class="fas fa-sign-in-alt"></i>
+                <h1>Welcome Back</h1>
+                <p>Sign in to your account</p>
+            </div>
+
+            <!-- Messages Container -->
+            <div id="message-container"></div>
+
+            <!-- Form -->
+            <form class="login-form" id="login-form">
+                
+                <!-- Phone/Email -->
+                <div class="form-group phone-group">
+                    <label><i class="fas fa-phone"></i> Phone or Email</label>
+                    <input type="text" id="login-phone-email" required placeholder="+254 700 123 456 or email@example.com">
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="login-password" required minlength="6">
+                </div>
+
+                <!-- Remember Me & Forgot Password -->
+                <div class="remember-group">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">Remember me</label>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+
+                <!-- Login Button -->
+                <button type="submit" class="login-btn" id="ultimate-login-btn">
+                    <span class="btn-content">
+                    <span class="btn-text">Sign In</span>
+                    </span>
+                    <div class="btn-loader">
+                    <div class="spinner"></div>
+                    </div>
+                    <div class="btn-glow"></div>
+                </button>
+            </form>
+
+            <!-- Divider -->
+            <div class="login-divider">
+                <span>or continue with</span>
+            </div>
+
+            <!-- Social Login -->
+            <div class="social-login-section">
+                <button type="button" class="social-btn google-login">
+                    <i class="fab fa-google"></i>
+                    Continue with Google
+                </button>
+                <button type="button" class="social-btn facebook-login">
+                    <i class="fab fa-facebook-f"></i>
+                    Continue with Facebook
+                </button>
+            </div>
+
+            <!-- Footer -->
+            <div class="login-footer-text">
+                Don't have an account? <a href="register.html" class="login-register-link">Create Account</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        // Form submission handler
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const btn = document.querySelector('.login-btn');
+            const originalText = btn.innerHTML;
+            const messageContainer = document.getElementById('message-container');
+            
+            // Show loading state
+            btn.innerHTML = '<div class="spinner"></div> Signing In...';
+            btn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Reset button
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                
+                // Show success message
+                showMessage('Welcome back! Redirecting to your dashboard...', 'success');
+                
+                // Redirect after 2 seconds
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+            }, 1500);
+        });
+        
+        function showMessage(text, type) {
+            const messageContainer = document.getElementById('message-container');
+            const message = document.createElement('div');
+            message.className = `message message-${type}`;
+            message.innerHTML = `
+                <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+                ${text}
+            `;
+            
+            messageContainer.innerHTML = '';
+            messageContainer.appendChild(message);
+            
+            // Animate in
+            gsap.fromTo(message, 
+                { opacity: 0, y: 20, scale: 0.95 },
+                { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(1.7)" }
+            );
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                gsap.to(message, {
+                    opacity: 0,
+                    y: -20,
+                    scale: 0.95,
+                    duration: 0.3,
+                    ease: "power2.in",
+                    onComplete: () => message.remove()
+                });
+            }, 5000);
+        }
+        
+        // Input focus animations
+        document.querySelectorAll('.form-group input').forEach(input => {
+            input.addEventListener('focus', function() {
+                gsap.to(this.parentElement, {
+                    scale: 1.02,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+            
+            input.addEventListener('blur', function() {
+                gsap.to(this.parentElement, {
+                    scale: 1,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+        });
+        
+        // Form input floating labels effect
+        document.querySelectorAll('.form-group input').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('focused');
+            });
+            
+            input.addEventListener('blur', function() {
+                if (!this.value) {
+                    this.parentElement.classList.remove('focused');
+                }
+            });
+            
+            // Check initial value
+            if (input.value) {
+                input.parentElement.classList.add('focused');
+            }
+        });
+        
+        // Password visibility toggle
+        const passwordInput = document.getElementById('login-password');
+        const phoneIcon = document.querySelector('.phone-group .phone-icon');
+        
+        passwordInput.insertAdjacentHTML('afterend', `
+            <i class="fas fa-eye password-toggle" style="
+                position: absolute;
+                right: 20px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: #ff6b6b;
+                font-size: 1.1rem;
+                cursor: pointer;
+                z-index: 2;
+                transition: all 0.3s ease;
+            "></i>
+        `);
+        
+        const passwordToggle = document.querySelector('.password-toggle');
+        passwordToggle.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // GSAP entrance animations
+        gsap.from('.login-card', {
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            ease: "back.out(1.7)"
+        });
+        
+        gsap.from('.login-branding', {
+            opacity: 0,
+            scale: 0.8,
+            duration: 0.8,
+            delay: 0.2,
+            ease: "back.out(1.7)"
+        });
+        
+        gsap.from('.login-form .form-group', {
+            opacity: 0,
+            y: 30,
+            duration: 0.6,
+            delay: 0.4,
+            stagger: 0.1,
+            ease: "power2.out"
+        });
+        
+        gsap.from('.login-btn', {
+            opacity: 0,
+            scale: 0.9,
+            rotation: -5,
+            duration: 0.7,
+            delay: 0.6,
+            ease: "back.out(1.7)"
+        });
+      
+    </script>
+</body>
+</html>

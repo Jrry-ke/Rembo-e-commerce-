@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rembo Shoppers - Your Affordable Shopping Companion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600;700&family=Dancing+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">Rembo Shoppers</div>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html#home" class="active">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="tel:+254700123456" class="call-btn">Call Us</a></li>
+        </ul>
+    </nav>
+    <div class="header-actions">
+        <div class="profile">
+            <a href="login.html" title="Login / My Profile">
+            <i class="fas fa-user-circle"></i>
+            <span>Login</span>
+            </a>
+        </div>
+        <div class="cart">
+            
+            <a href="cart.html" id="cart-link" title="Shopping Cart" onclick="goToCart(event)">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Cart (<span id="cart-count">0</span>)</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+    <!-- Main Layout Container -->
+    <div class="main-container">
+        
+        <!-- Left Sidebar -->
+        <aside class="sidebar">
+            <!-- Categories -->
+            <div class="sidebar-section">
+                <h3><i class="fas fa-list"></i> Categories</h3>
+                <ul class="category-list">
+                    <li><a href="#women-fashion"><i class="fas fa-female"></i> Women Fashion</a></li>
+                    <li><a href="#beauty-makeup"><i class="fas fa-magic"></i> Beauty & Makeup</a></li>
+                    <li><a href="#perfumes"><i class="fas fa-spray-can"></i> Perfumes</a></li>
+                    <li><a href="#baby-products"><i class="fas fa-baby"></i> Baby Products</a></li>
+                    <li><a href="#shoes"><i class="fas fa-shoe-prints"></i> Shoes</a></li>
+                    <li><a href="#bags"><i class="fas fa-shopping-bag"></i> Bags</a></li>
+                    <li><a href="#phones-tech"><i class="fas fa-mobile-alt"></i> Phones & Tech</a></li>
+                    <li><a href="#health-fitness"><i class="fas fa-heartbeat"></i> Health & Fitness</a></li>
+                    <li><a href="#home-appliances"><i class="fas fa-blender"></i> Home Appliances</a></li>
+                    <li><a href="#ladies-dresses"><i class="fas fa-tshirt"></i> Ladies Dresses</a></li>
+                    <li><a href="#jewelry"><i class="fas fa-gem"></i> Jewelry & Watches</a></li>
+                    <li><a href="#skincare"><i class="fas fa-spa"></i> Skincare</a></li>
+                    <li><a href="#bath-body"><i class="fas fa-pump-soap"></i> Bath & Body</a></li>
+                    <li><a href="#hair"><i class="fas fa-fish"></i> Hair Extensions</a></li>
+                    <li><a href="#gym-wear"><i class="fas fa-dumbbell"></i> Gym Wear</a></li>
+                    <li><a href="#wedding"><i class="fas fa-ring"></i> Wedding Collection</a></li>
+                    <li><a href="#kitchenware"><i class="fas fa-utensils"></i> Kitchenware</a></li>
+                </ul>
+            </div>
+
+            <!-- Discount Banner -->
+            <div class="discount-banner">
+                <div class="discount-badge">🔥 SALE</div>
+                <h4>Up to 70% OFF</h4>
+                <p>Flash Sale Ends Soon!</p>
+                <a href="shop.html" class="btn-discount">Shop Now</a>
+            </div>
+
+            <!-- Sidebar Ad 1 -->
+            <div class="sidebar-ad">
+                <h4>Big Sale! 50% Off</h4>
+                <p>On all Ladies' Suits</p>
+                <a href="#shop" class="btn-sidebar">Shop Now</a>
+            </div>
+
+            <!-- Sidebar Ad 2 -->
+            <div class="sidebar-ad secondary">
+                <h4>New Arrivals</h4>
+                <p>Check out the latest trends</p>
+            </div>
+
+            <!-- Sidebar Ad 3 -->
+            <div class="sidebar-ad third">
+                <h4><i class="fas fa-baby-carriage"></i> Baby Essentials</h4>
+                <p>Up to 30% off</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content-area">
+            
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" class="search-input" placeholder="Search for products, brands, categories...">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </div>
+            </div>
+
+            <!-- Hero Section -->
+            <section id="home" class="hero">
+                <h1 class="changing-text">WELCOME SHOPPERS!!!</h1>
+                <p>Your affordable shopping companion!</p>
+                <p>
+                    <span class="fast">Shop fast.</span>
+                    <span class="smart">Shop smart.</span>
+                    <span class="save">Save More.</span>
+                </p>
+                <div class="hero-buttons">
+                    <a href="#shop" class="btn">Shop Now</a>
+                    <a href="#products" class="btn-secondary">Explore Deals</a>
+                </div>
+            </section>
+
+            <!-- Ad Banner -->
+            <div class="ad-banner">
+                <div class="ad-content">
+                    <h2><i class="fas fa-bolt"></i> FLASH SALE IS LIVE!</h2>
+                    <p>Up to 70% off on selected items. Limited time only.</p>
+                </div>
+            </div>
+
+            <!-- Flash Sale Section -->
+            <section id="shop" class="shop">
+                <h2>Flash Sale <span class="sale-tag">🔥 Hot Deals</span></h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="badge">-50%</div>
+                        <img src="Images/Women Solid.jpg">
+                        <h3>Elegant Ladies Dress</h3>
+                        <p class="price"><span class="old-price">KES 7,000</span> KES 3,500</p>
+                        <a href="#" class="btn add-to-cart" data-product="Elegant Dress" data-price="3500">Add to Cart</a>
+                    </div>
+                    <div class="product-card">
+                        <div class="badge">-30%</div>
+                        <img src="Images/close-up-futuristic-sneakers.jpg" alt="Smart Sneakers">
+                        <h3>Smart Sneakers</h3>
+                        <p class="price"><span class="old-price">KES 6,500</span> KES 4,500</p>
+                        <a href="#" class="btn add-to-cart" data-product="Smart Sneakers" data-price="4500">Add to Cart</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="Images/Exfoliating Gloves 1Pair 8Colours One Size Fits All - Pink.jpg" alt="Bathing Gloves">
+                        <h3>Comfort Bathing Gloves</h3>
+                        <p class="price">KES 100</p>
+                        <a href="#" class="btn add-to-cart" data-product="Bathing Gloves" data-price="100">Add to Cart</a>
+                    </div>
+                    <div class="product-card">
+                        <div class="badge hot">HOT</div>
+                        <img src="Images/ladies suit.jpg" alt="Ladies Suit">
+                        <h3>Full Ladies' Suit</h3>
+                        <p class="price"><span class="old-price">KES 15,000</span> KES 10,500</p>
+                        <a href="#" class="btn add-to-cart" data-product="Ladies Suit" data-price="10500">Add to Cart</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Middle Ad -->
+            <div class="ad-banner small-ad">
+                <p><i class="fas fa-truck"></i> Free Shipping on orders over KES 5,000!</p>
+            </div>
+
+            <!-- Perfumes Section -->
+            <section class="shop">
+                <h2>Perfumes & Fragrances <span class="sale-tag">✨ Premium</span></h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="badge">New</div>
+                        <img src="Images/dark-glass-bottle-with-single-liquid-drop-generative-ai.jpg" alt="Luxury Perfume">
+                        <h3>Luxury Perfume</h3>
+                        <p class="price">KES 2,500</p>
+                        <a href="#" class="btn add-to-cart" data-product="Luxury Perfume" data-price="2500">Add to Cart</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="Images/collection-small-perfume-bottles.jpg" alt="Floral Perfume">
+                        <h3>Floral Perfume</h3>
+                        <p class="price">KES 1,800</p>
+                        <a href="#" class="btn add-to-cart" data-product="Floral Perfume" data-price="1800">Add to Cart</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="Images/collection-small-perfume-bottles (1).jpg" alt="Classic Perfume">
+                        <h3>Classic Perfume</h3>
+                        <p class="price">KES 2,200</p>
+                        <a href="#" class="btn add-to-cart" data-product="Classic Perfume" data-price="2200">Add to Cart</a>
+                    </div>
+                    <div class="product-card">
+                        <div class="badge">-20%</div>
+                        <img src="Images/red-cherry-perfumes.jpg" alt="Fresh Perfume">
+                        <h3>Fresh Perfume</h3>
+                        <p class="price"><span class="old-price">KES 3,000</span> KES 2,400</p>
+                        <a href="#" class="btn add-to-cart" data-product="Fresh Perfume" data-price="2400">Add to Cart</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Products -->
+            <section id="products" class="shop">
+                <h2>Featured Products <span class="sale-tag">⭐ Popular</span></h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="Images/clos.jpg" alt="Sport Shoes">
+                        <h3>Sport Shoes</h3>
+                        <p class="price">KES 2,200</p>
+                        <a href="#" class="btn add-to-cart" data-product="Sport Shoes" data-price="2200">Add to Cart</a>
+                    </div>
+                    <div class="product-card">
+                        <div class="badge">New</div>
+                        <img src="Images/ladies boots.jpg" alt="Ladies Boots">
+                        <h3>Stylish Boots</h3>
+                        <p class="price">KES 5,800</p>
+                        <a href="#" class="btn add-to-cart" data-product="Stylish Boots" data-price="5800">Add to Cart</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="Images/burst-powder-makeup-brush-dark-background.jpg" alt="Make-up Set">
+                        <h3>Full Make-up Set</h3>
+                        <p class="price">KES 3,200</p>
+                        <a href="#" class="btn add-to-cart" data-product="Make-up Set" data-price="3200">Add to Cart</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="Images/Galaxy S26.jpg" alt="Mobile Phone">
+                        <h3>Mobile Phone</h3>
+                        <p class="price">KES 55,500</p>
+                        <a href="#" class="btn add-to-cart" data-product="Mobile Phone" data-price="55500">Add to Cart</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bags & Handbags Section -->
+            <section class="shop">
+                <h2>Bags & Handbags <span class="sale-tag">👜 Trending</span></h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="Images/beautiful-elegance-luxury-fashion-women-bag.jpg" alt="Ladies Handbag">
+                        <h3>Elegant Handbag</h3>
+                        <p class="price">KES 3,500</p>
+                        <a href="#" class="btn add-to-cart" data-product="Elegant Handbag" data-price="3500">Add to Cart</a>
+                    </div>
+                    <div class="product-card">
+                        <div class="badge">-15%</div>
+                        <img src="Images/pink-handbags.jpg" alt="Leather Bag">
+                        <h3>Leather Bag</h3>
+                        <p class="price"><span class="old-price">KES 5,000</span> KES 4,250</p>
+                        <a href="#" class="btn add-to-cart" data-product="Leather Bag" data-price="4250">Add to Cart</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="Images/luxury-woman-handbag.jpg" alt="Designer Bag">
+                        <h3>Designer Bag</h3>
+                        <p class="price">KES 4,800</p>
+                        <a href="#" class="btn add-to-cart" data-product="Designer Bag" data-price="4800">Add to Cart</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="Images/red-leather-women-wallet.jpg" alt="Casual Bag">
+                        <h3>Casual Bag</h3>
+                        <p class="price">KES 2,500</p>
+                        <a href="#" class="btn add-to-cart" data-product="Casual Bag" data-price="2500">Add to Cart</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Ad Banner -->
+            <div class="ad-banner promo-ad">
+                <div class="promo-content">
+                    <h3><i class="fas fa-gift"></i> Buy 2 Get 1 Free</h3>
+                    <p>On all baby products this week!</p>
+                </div>
+            </div>
+
+            <!-- Baby Products -->
+            <section class="shop">
+                <h2>Baby Products <span class="sale-tag">🆕 New</span></h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="Images/SHEIN.jpg" alt="Baby Towels">
+                        <h3>Soft Baby Towels</h3>
+                        <p class="price">KES 1,000</p>
+                        <a href="#" class="btn add-to-cart" data-product="Baby Towels" data-price="1000">Add to Cart</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="Images/baby diapers.jpg" alt="Diapers Pack">
+                        <h3>Premium Diapers</h3>
+                        <p class="price">KES 2,800</p>
+                        <a href="#" class="btn add-to-cart" data-product="Diapers" data-price="2800">Add to Cart</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="Images/BAby food.jpg" alt="Baby Food">
+                        <h3>Organic Baby Food</h3>
+                        <p class="price">KES 850</p>
+                        <a href="#" class="btn add-to-cart" data-product="Baby Food" data-price="850">Add to Cart</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="Images/cosmetics-composition-with-serum-bottles.jpg" alt="Skincare">
+                        <h3>Organic Skincare</h3>
+                        <p class="price">KES 1,500</p>
+                        <a href="#" class="btn add-to-cart" data-product="Skincare" data-price="1500">Add to Cart</a>
+                    </div>
+                </div>
+            </section>
+
+                        <!-- Skincare Section -->
+            <section class="shop">
+                <h2>Skincare & Beauty <span class="sale-tag">💄 Beauty</span></h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="badge">-25%</div>
+                        <img src="Images/CREAM.jpg" alt="Face Cream">
+                        <h3>Anti-Aging Cream</h3>
+                        <p class="price"><span class="old-price">KES 3,000</span> KES 2,250</p>
+                        <a href="#" class="btn add-to-cart" data-product="Anti-Aging Cream" data-price="2250">Add to Cart</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="Images/4917026.jpg" alt="Face Mask">
+                        <h3>Face Mask Set</h3>
+                        <p class="price">KES 1,200</p>
+                        <a href="#" class="btn add-to-cart" data-product="Face Mask Set" data-price="1200">Add to Cart</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="Images/serum-bottle-with-yellow-background.jpg" alt="Moisturizer">
+                        <h3>Daily Moisturizer</h3>
+                        <p class="price">KES 1,500</p>
+                        <a href="#" class="btn add-to-cart" data-product="Daily Moisturizer" data-price="1500">Add to Cart</a>
+                    </div>
+                    <div class="product-card">
+                        <div class="badge">New</div>
+                        <img src="Images/Radha Beauty Natural Vitamin C Serum 2oz, Vitamin C, Vitamin E, Hyaluronic Acid and Aloe, Facial Serum for Anti-Aging Wrinkles, Dark Spots, Fine Lines.jpg" alt="Serum">
+                        <h3>Vitamin C Serum</h3>
+                        <p class="price">KES 2,000</p>
+                        <a href="#" class="btn add-to-cart" data-product="Vitamin C Serum" data-price="2000">Add to Cart</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Home Appliances Section -->
+            <section class="shop">
+                <h2>Home Appliances <span class="sale-tag">🏠 Essentials</span></h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="Images/blender.jpg" alt="Blender">
+                        <h3>Electric Blender</h3>
+                        <p class="price">KES 3,500</p>
+                        <a href="#" class="btn add-to-cart" data-product="Electric Blender" data-price="3500">Add to Cart</a>
+                    </div>
+                    <div class="product-card">
+                        <div class="badge">-10%</div>
+                        <img src="Images/view-retro-clothing-iron-nutshell-tones.jpg" alt="Iron">
+                        <h3>Steam Iron</h3>
+                        <p class="price"><span class="old-price">KES 4,500</span> KES 4,050</p>
+                        <a href="#" class="btn add-to-cart" data-product="Steam Iron" data-price="4050">Add to Cart</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="Images/COSORI Electric Kettle, Tea Kettle Pot, 1_7L_1500W, Stainless Steel Inner Lid & Filter, Hot Water Ke.jpg" alt="Kettle">
+                        <h3>Electric Kettle</h3>
+                        <p class="price">KES 2,000</p>
+                        <a href="#" class="btn add-to-cart" data-product="Electric Kettle" data-price="2000">Add to Cart</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="Images/fan.jpg" alt="Fan">
+                        <h3>Standing Fan</h3>
+                        <p class="price">KES 4,500</p>
+                        <a href="#" class="btn add-to-cart" data-product="Standing Fan" data-price="4500">Add to Cart</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Why Choose Us Section -->
+            <section class="why-choose-us">
+                <h2>Why Choose Rembo Shoppers?</h2>
+                <div class="features-grid">
+                    <div class="feature-box">
+                        <i class="fas fa-shipping-fast"></i>
+                        <h3>Fast Shipping</h3>
+                        <p>Quick delivery across Kenya</p>
+                    </div>
+                    <div class="feature-box">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Secure Payments</h3>
+                        <p>100% secure payment methods</p>
+                    </div>
+                    <div class="feature-box">
+                        <i fa-star></i>
+                        <h3>Quality Products</h3>
+                        <p>Authentic and top-quality items</p>
+                    </div>
+                    <div class="feature-box">
+                        <i class="fas fa-headset"></i>
+                        <h3>24/7 Support</h3>
+                        <p>Always here to help you</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Us -->
+            <section id="about" class="about">
+                <h2 class="about-title">About Us</h2>
+                <p>Rembo Shoppers is an enterprise that focuses on the elegance, beauty, and smartness of women. We are a trusted online store for affordable fashion, beauty, baby products, and essentials for all women's needs. We blend speed, convenience, availability, and affordability to give you the best shopping experience. Our mission is to provide high-quality products at unbeatable prices while delivering exceptional customer service.</p>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="contact">
+                <h2>Contact Us</h2>
+                <p>Talk to Us</p>
+                <p><i class="fas fa-envelope"></i> Email: remboshoppers@gmail.com</p>
+                <p><i class="fas fa-phone"></i> Phone: +254 700 123 456, +254 102 945 930</p>
+                
+                <div class="social-section">
+                    <p class="social-title">Or Visit Us On Our Social Media Pages</p>
+                    <div class="social-links">
+                        <a href="https://www.youtube.com/@remboshoppers" target="_blank" class="social-btn youtube">
+                            <i class="fab fa-youtube"></i><span>YouTube</span>
+                        </a>
+                        <a href="https://www.instagram.com/remboshoppers" target="_blank" class="social-btn instagram">
+                            <i class="fab fa-instagram"></i><span>Instagram</span>
+                        </a>
+                        <a href="https://www.tiktok.com/@remboshoppers" target="_blank" class="social-btn tiktok">
+                            <i class="fab fa-tiktok"></i><span>TikTok</span>
+                        </a>
+                        <a href="https://www.facebook.com/remboshoppers" target="_blank" class="social-btn facebook">
+                            <i class="fab fa-facebook-f"></i><span>Facebook</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+     
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section links">
+                <h3><i class="fas fa-link"></i> Quick Links</h3>
+                <ul>
+                    <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#shop"><i class="fas fa-shopping-cart"></i> Shop</a></li>
+                    <li><a href="#about"><i class="fas fa-users"></i> About Us</a></li>
+                    <li><a href="tel:+254700123456"><i class="fas fa-phone"></i> Call Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section service">
+                <h3><i class="fas fa-headset"></i> Customer Service</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-shipping-fast"></i> Shipping Info</a></li>
+                    <li><a href="#"><i class="fas fa-undo"></i> Returns & Refunds</a></li>
+                    <li><a href="#"><i class="fas fa-lock"></i> Privacy Policy</a></li>
+                    <li><a href="#"><i class="fas fa-file-contract"></i> Terms & Conditions</a></li>
+                    <li><a href="#"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section contact">
+                <div class="payment-methods">
+                    <p><i class="fas fa-credit-card"></i> We Accept:</p>
+                    <div class="payment-icons">
+                        <i class="fab fa-cc-visa" title="Visa"></i>
+                        <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+                        <i class="fas fa-mobile-alt" title="M-Pesa"></i>
+                        <i class="fas fa-money-bill-wave" title="Cash on Delivery"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-newsletter">
+            <h3><i class="fas fa-paper-plane"></i> Subscribe to Our Newsletter</h3>
+            <p>Get the latest updates on new products and upcoming sales.</p>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+                <button type="submit" class="newsletter-btn"><i class="fas fa-envelope"></i> Subscribe</button>
+            </form>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Rembo Shoppers. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="script.js">
+         
+    </script>
+   
+</body>
+</html>
+
+    
+    
